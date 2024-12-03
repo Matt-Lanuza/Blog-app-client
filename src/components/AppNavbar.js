@@ -13,7 +13,7 @@ export default function AppNavbar() {
           <Nav className="ms-auto">
             <Nav.Link href="#home" className="navbar-collapse">Home</Nav.Link>
             <Nav.Link href="#link" className="navbar-collapse">Login</Nav.Link>
-            <Nav.Link href="#link" className="navbar-collapse">Register</Nav.Link>
+            <Nav.Link href="/register" className="navbar-collapse">Register</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
