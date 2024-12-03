@@ -68,16 +68,17 @@ export default function MyPostsPage() {
           className="btn btn-primary create-post-btn"
           onClick={() => setShowCreateModal(true)}
         >
-          What's on your mind?
+          Write something
         </button>
       </div>
+      
       {posts.length > 0 ? (
         posts.map((post) => (
           <Card key={post._id} className="my-4 shadow-lg" style={{ maxWidth: '900px', margin: 'auto' }}>
             <Card.Body className="my-5">
               <Card.Title className="display-4 font-weight-bold mb-3 text-center">{post.title}</Card.Title>
               <Card.Subtitle className="text-muted mb-5 text-center">
-                By: {post.author} -{' '}
+                By: Me -{' '}
                 <small>
                   {new Date(post.creationDate).toLocaleString('en-US', {
                     month: '2-digit',

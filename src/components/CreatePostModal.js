@@ -68,7 +68,7 @@ export default function CreatePostModal({ show, onHide, refreshPosts }) {
           {error && <div className="alert alert-danger">{error}</div>}
 
           <Form.Group className="mb-3" controlId="formTitle">
-            <Form.Label>Title</Form.Label>
+            <Form.Label>Title:</Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter post title"
@@ -78,7 +78,7 @@ export default function CreatePostModal({ show, onHide, refreshPosts }) {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formContent">
-            <Form.Label>Content</Form.Label>
+            <Form.Label>Content:</Form.Label>
             <Form.Control
               as="textarea"
               rows={5}
