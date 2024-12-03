@@ -44,64 +44,72 @@
     }
 
     ```
+#### [GET] - "/users/details"
+
+- No Request Body
+
+
+
       
-### Movies
+### Blog Posts
 
-#### [POST] - "/movies/addMovie"
-
-- Sample Request Body
-
-    ```json
-
-    {
-        "title": "Sample: The Movie",
-        "director": "Sample L. Jackson",
-        "year": 2024,
-        "description": "sample description",
-        "genre": "sample"
-    }
-
-    ```
-
-#### [GET] - "/movies/getMovies"
-
-- No Request Body
-
-#### [GET] - "/movies/getMovie/:id"
-
-- No Request Body
-
-#### [PATCH] - "/movies/updateMovie/:id"
+#### [POST] - "/posts/createPost"
 
 - Sample Request Body
 
     ```json
 
     {
-        "title": "Sample 2: The Update",
-        "director": "Sample L. Jackson",
-        "year": 2026,
-        "description": "sample updated description",
-        "genre": "sample"
+        "title": "Sample Title",
+        "content": "Sample Content",
     }
 
     ```
 
-#### [DELETE] - "/movies/deleteMovie/:id"
+#### [GET] - "/posts/getAllPosts"
 
 - No Request Body
 
-#### [POST] - "/movies/addComment/:id"
+#### [GET] - "/posts/getPost/:id"
+
+- No Request Body
+
+#### [PUT] - "/posts/editPost/:id"
 
 - Sample Request Body
 
     ```json
 
     {
-        "comment": "Sample 2: The Reckoning is the best sample update of all time.",
+        "title": "New Title",
+        "content": "New Content",
     }
 
     ```
-#### [GET] - "/movies/getComments/:id"
+
+#### [DELETE] - "/posts/deletePost/:id"
+
+- No Request Body
+
+#### [DELETE] - "/posts/adminDeletePost/:id"
+
+- No Request Body
+
+#### [PATCH] - "/posts/addComment/:id"
+
+- Sample Request Body
+
+    ```json
+
+    {
+        "comment": "Awesome! Wow! Superb!",
+    }
+
+    ```
+#### [GET] - "/posts/getComments/:id"
+
+- No Request Body
+
+#### [DELETE] - "/posts/adminDeleteComment/:id/:commentId"
 
 - No Request Body
