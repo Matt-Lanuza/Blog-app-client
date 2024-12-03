@@ -42,12 +42,12 @@ export default function PostDetailsPage() {
   return (
     <Container className="my-5">
       <Card className="shadow-lg" style={{ maxWidth: '900px', margin: 'auto' }}>
-        <Card.Body>
+        <Card.Body className="my-5">
           {/* Title */}
-          <Card.Title className="display-4 font-weight-bold">{post.title}</Card.Title>
+          <Card.Title className="display-4 font-weight-bold mb-3 text-center">{post.title}</Card.Title>
 
           {/* Author and Date */}
-          <Card.Subtitle className="text-muted mb-2">
+          <Card.Subtitle className="text-muted mb-5 text-center">
             By: {post.author} - <small>{new Date(post.creationDate).toLocaleString()}</small>
           </Card.Subtitle>
 
