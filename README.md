@@ -9,9 +9,13 @@
     - email: "admin@blog.com"
     - password: "admin1234"
 
-- Non-admin User
+- Non-admin Users
     - email: "dummy@blog.com"
-    - password: "dummy1234"
+    - password: "dummy1234" <br>
+
+    - email: "fizz@blog.com"
+    - password: "fizz1234" <br>
+
 
 ## References
 
