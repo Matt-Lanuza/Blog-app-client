@@ -1,25 +1,36 @@
 import { useState, useEffect } from 'react';
 import { Table, Spinner, Container } from 'react-bootstrap';
+import AdminDeletePost from './AdminDeletePost';
 
 export default function AdminView() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedPostId, setSelectedPostId] = useState(null);
   useEffect(() => {
-    // Fetch the posts from the backend API for Admin
+    fetchPosts();
+  }, []);
+
+  const fetchPosts = () => {
+    setLoading(true);
     fetch('https://blog-post-server.onrender.com/posts/getAllPosts')
       .then((res) => res.json())
       .then((data) => {
-        console.log("Posts Data", data);
-        setPosts(data.posts); // Set posts if the API call is successful
+        setPosts(data.posts);
         setLoading(false);
       })
       .catch((err) => {
         setError('Failed to load posts. Please try again later.');
         setLoading(false);
       });
-  }, []);
+  };
+
+  const handleDeleteClick = (postId) => {
+    setSelectedPostId(postId); 
+    setShowDeleteModal(true); 
+  };
 
   if (loading) {
     return (
@@ -40,8 +51,7 @@ export default function AdminView() {
   return (
     <Container className="my-5 text-center">
       <h2 className="text-center mb-5">Admin Dashboard</h2>
-      {/* Posts Table */}
-      <Table striped bordered hover responsive>
+      <Table bordered hover responsive>
         <thead>
           <tr>
             <th>Post Title</th>
@@ -70,13 +80,29 @@ export default function AdminView() {
               <td>
                 {post.content.length > 150 ? post.content.substring(0, 150) + '...' : post.content}
               </td>
-              <td>
-                <button className="btn btn-outline-primary btn-sm">View</button>
+              <td className="d-flex justify-content-center align-items-center" style={{ height: '120px' }}>
+                <button className="btn btn-outline-primary btn-sm mx-2">View</button>
+                <button
+                  className="btn btn-outline-danger btn-sm mx-2"
+                  onClick={() => handleDeleteClick(post._id)}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </Table>
+
+      {/* Delete Post Modal */}
+      {selectedPostId && (
+        <AdminDeletePost
+          postId={selectedPostId}
+          show={showDeleteModal}
+          onHide={() => setShowDeleteModal(false)}
+          refreshPosts={fetchPosts}
+        />
+      )}
     </Container>
   );
 }
