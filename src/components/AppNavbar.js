@@ -19,11 +19,13 @@ export default function AppNavbar() {
           {user && user.id !== null ? (
             <>
               <Nav.Link as={Link} to="/" className="navbar-collapse">Home</Nav.Link>
+              <Nav.Link as={Link} to="/posts" className="navbar-collapse">Posts</Nav.Link>
               <Nav.Link as={Link} to="/logout" className="navbar-collapse">Logout</Nav.Link>
             </>
           ) : (
             <>
               <Nav.Link as={Link} to="/" className="navbar-collapse">Home</Nav.Link>
+              <Nav.Link as={Link} to="/posts" className="navbar-collapse">Posts</Nav.Link>
               <Nav.Link as={Link} to="/login" className="navbar-collapse">Login</Nav.Link>
               <Nav.Link as={Link} to="/register" className="navbar-collapse">Register</Nav.Link>
             </>

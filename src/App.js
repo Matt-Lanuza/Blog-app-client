@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
+import Posts from './pages/Posts';
 
 function App() {
     const [user, setUser] = useState(() => {
@@ -74,6 +75,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/posts" element={<Posts />} />
         </Routes>
       </Router>
     </UserProvider>
