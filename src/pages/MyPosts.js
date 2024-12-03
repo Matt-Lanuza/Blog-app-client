@@ -3,6 +3,7 @@ import { Card, Spinner, Container, Button } from 'react-bootstrap';
 import { Notyf } from 'notyf';
 import CreatePostModal from '../components/CreatePostModal';
 import EditPostModal from '../components/EditPostModal';
+import DeletePost from '../components/DeletePost';
 
 export default function MyPostsPage() {
   const [posts, setPosts] = useState([]);
@@ -11,6 +12,8 @@ export default function MyPostsPage() {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [postToDelete, setPostToDelete] = useState(null);
 
   const notyf = new Notyf();
 
@@ -69,6 +72,11 @@ export default function MyPostsPage() {
     setShowEditModal(true);
   };
 
+  const handleDeletePost = (post) => {
+    setPostToDelete(post);
+    setShowDeleteModal(true);
+  };
+
 
   return (
     <Container className="my-5">
@@ -96,11 +104,11 @@ export default function MyPostsPage() {
                   Edit
                 </Button>
 
-                {/*Delete button*/}
-                <Button 
-  /*                onClick={() => handleEditPost(post)}*/
+                {/* Delete button */}
+                <Button
+                  onClick={() => handleDeletePost(post)} 
                   className="delete-post-btn"
-                  >
+                >
                   Delete
                 </Button>
               </div>
@@ -142,6 +150,13 @@ export default function MyPostsPage() {
         show={showEditModal}
         onHide={() => setShowEditModal(false)}
         post={selectedPost}
+        refreshPosts={fetchMyPosts}
+      />
+
+      <DeletePost
+        postId={postToDelete && postToDelete._id}
+        show={showDeleteModal}
+        onHide={() => setShowDeleteModal(false)}
         refreshPosts={fetchMyPosts}
       />
 
