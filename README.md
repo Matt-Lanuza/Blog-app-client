@@ -11,10 +11,10 @@
 
 - Non-admin Users
     - email: "dummy@blog.com"
-    - password: "dummy1234" <br>
+    - password: "dummy1234" <br />
 
     - email: "fizz@blog.com"
-    - password: "fizz1234" <br>
+    - password: "fizz1234"
 
 
 ## References
