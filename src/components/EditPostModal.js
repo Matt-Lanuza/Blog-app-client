@@ -83,7 +83,7 @@ export default function EditPostModal({ show, onHide, post, refreshPosts }) {
           {error && <div className="alert alert-danger">{error}</div>}
 
           <Form.Group controlId="postTitle" className="mb-3">
-            <Form.Label>Title</Form.Label>
+            <Form.Label>Title:</Form.Label>
             <Form.Control
               type="text"
               value={title}
@@ -94,7 +94,7 @@ export default function EditPostModal({ show, onHide, post, refreshPosts }) {
           </Form.Group>
 
           <Form.Group controlId="postContent" className="mb-3">
-            <Form.Label>Content</Form.Label>
+            <Form.Label>Content:</Form.Label>
             <Form.Control
               as="textarea"
               rows={5}
