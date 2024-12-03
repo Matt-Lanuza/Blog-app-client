@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Notyf } from 'notyf';
 
 export default function Register() {
@@ -11,6 +11,7 @@ export default function Register() {
     const [verifyPassword, setVerifyPassword] = useState("");
     const [isActive, setIsActive] = useState(false);
     const notyf = new Notyf();
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -53,6 +54,9 @@ export default function Register() {
                 setVerifyPassword('');
 
                 notyf.success("You are now registered! Please log in.");
+
+                /*after register, it will route to /login*/
+                navigate('/login');
             } else if (data.error === 'Invalid email address') {
                 notyf.error("Please double-check your email and make sure it follows the format (e.g., juandelacruz@mail.com).");
             } else if (data.error === 'Password must be at least 8 characters long') {
@@ -131,7 +135,7 @@ export default function Register() {
             </Form>
 
             <div className="mt-3 text-center">
-                <p>Already have an account? <Link to="/login">Log in here</Link></p>
+                <p>Already have an account? <Link to="/">Log in here</Link></p>
             </div>
         </Container>
     );
