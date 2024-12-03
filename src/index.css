@@ -4,3 +4,30 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+
+/*fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+
+/*app navbar background*/
+#app-navbar {
+  background-color: #2A3E50 !important;
+  border-bottom: 2px solid #00ff00;
+}
+
+/*Logo name*/
+#logo-name {
+  font-family: 'Rubik Glitch', sans-serif;
+  font-size: 40px;
+  color: #B2BEB5;
+
+}
+
+/*navbar-collapse*/
+.navbar-collapse {
+  font-family: 'Orbitron', sans-serif;
+  color: #FFC107;
+  font-size: 25px;
+}
