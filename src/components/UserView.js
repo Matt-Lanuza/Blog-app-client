@@ -90,7 +90,7 @@ export default function UserView() {
     <div className="functionalities-div text-center">
       {isAuthenticated && (
         <Button variant="primary" onClick={handleCreatePostClick} className="create-post-btn mb-4"  >
-          What's on your mind?
+          Write something
         </Button>
       )}
     </div>
