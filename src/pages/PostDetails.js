@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, Spinner, Container } from 'react-bootstrap';
+import GetComments from '../components/GetComments';
 
 export default function PostDetailsPage() {
   const { id } = useParams(); // Get the post ID from the URL
   const [post, setPost] = useState(null);
+  const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -21,6 +23,34 @@ export default function PostDetailsPage() {
         setError('Failed to load post details. Please try again later.');
         setLoading(false);
       });
+
+      // Fetch comments for the movie
+      const fetchComments = () => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          return;
+        }
+
+        fetch(`https://blog-post-server.onrender.com/posts/getComments/${id}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          }
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("here", data)
+            if (data && data.comments) {
+              setComments(data.comments); 
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching comments:", error);
+          });
+      };
+
+      fetchComments();
   }, [id]);
 
   if (loading) {
@@ -54,6 +84,7 @@ export default function PostDetailsPage() {
           {/* Post Content */}
           <Card.Text className="text-justify">{post.content}</Card.Text>
         </Card.Body>
+        <GetComments comments={comments} />
       </Card>
 
 
