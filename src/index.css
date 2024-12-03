@@ -88,3 +88,42 @@
   background-color: #004085;
   transform: translateY(0);
 }
+
+
+/*Edit Post button*/
+.card-body {
+  position: relative;
+}
+
+.edit-post-btn {
+  position: absolute;
+  top: -30px;
+  right: 110px;
+  background-color: #fd7e14;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.edit-post-btn:hover {
+  background-color: #006400; 
+  color: white;
+}
+
+/*Edit Post button*/
+.delete-post-btn {
+  position: absolute;
+  top: -30px;
+  right: 20px;
+  background-color: #000;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.delete-post-btn:hover {
+  background-color: #DC143C; 
+  color: white;
+}

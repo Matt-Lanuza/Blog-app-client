@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react';
-import { Card, Spinner, Container } from 'react-bootstrap';
+import { Card, Spinner, Container, Button } from 'react-bootstrap';
 import { Notyf } from 'notyf';
 import CreatePostModal from '../components/CreatePostModal';
+import EditPostModal from '../components/EditPostModal';
 
 export default function MyPostsPage() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedPost, setSelectedPost] = useState(null);
+
   const notyf = new Notyf();
 
   useEffect(() => {
@@ -60,6 +64,12 @@ export default function MyPostsPage() {
     return <div className="alert alert-danger">{error}</div>;
   }
 
+  const handleEditPost = (post) => {
+    setSelectedPost(post);
+    setShowEditModal(true);
+  };
+
+
   return (
     <Container className="my-5">
       <h2 className="mt-5 mb-3 text-center">My Posts</h2>
@@ -76,6 +86,25 @@ export default function MyPostsPage() {
         posts.map((post) => (
           <Card key={post._id} className="my-4 shadow-lg" style={{ maxWidth: '900px', margin: 'auto' }}>
             <Card.Body className="my-5">
+
+              <div className="my-5">
+                {/*Edit button*/}
+                <Button 
+                  onClick={() => handleEditPost(post)}
+                  className="edit-post-btn"
+                  >
+                  Edit
+                </Button>
+
+                {/*Delete button*/}
+                <Button 
+  /*                onClick={() => handleEditPost(post)}*/
+                  className="delete-post-btn"
+                  >
+                  Delete
+                </Button>
+              </div>
+
               <Card.Title className="display-4 font-weight-bold mb-3 text-center">{post.title}</Card.Title>
               <Card.Subtitle className="text-muted mb-5 text-center">
                 By: Me -{' '}
@@ -93,6 +122,8 @@ export default function MyPostsPage() {
               <Card.Text className="text-justify">
                 {post.content.length > 500 ? post.content.substring(0, 500) + '...' : post.content}
               </Card.Text>
+
+
             </Card.Body>
           </Card>
         ))
@@ -100,9 +131,17 @@ export default function MyPostsPage() {
         <p>No posts available.</p>
       )}
 
+      {/*Modals*/}
       <CreatePostModal
         show={showCreateModal}
         onHide={() => setShowCreateModal(false)}
+        refreshPosts={fetchMyPosts}
+      />
+
+      <EditPostModal
+        show={showEditModal}
+        onHide={() => setShowEditModal(false)}
+        post={selectedPost}
         refreshPosts={fetchMyPosts}
       />
 
