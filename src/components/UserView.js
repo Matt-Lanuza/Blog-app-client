@@ -72,8 +72,7 @@ export default function UserView() {
   }
 
   const handleViewDetails = (postId) => {
-    notyf.success(`Viewing details for movie ID: ${postId}`);
-    navigate(`/post/${postId}`);  // Redirect to the posts details page
+    navigate(`/post/${postId}`);
   };
 
   const handleLoginRedirect = () => {

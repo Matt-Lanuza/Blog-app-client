@@ -67,12 +67,12 @@ export default function MyPostsPage() {
       {posts.length > 0 ? (
         posts.map((post) => (
           <Card key={post._id} className="my-4 shadow-lg" style={{ maxWidth: '900px', margin: 'auto' }}>
-            <Card.Body>
+            <Card.Body className="my-5">
               {/* Title */}
-              <Card.Title className="display-4 font-weight-bold">{post.title}</Card.Title>
+              <Card.Title className="display-4 font-weight-bold mb-3 text-center">{post.title}</Card.Title>
 
               {/* Author and Date */}
-              <Card.Subtitle className="text-muted mb-2">
+              <Card.Subtitle className="text-muted mb-5 text-center">
                 By: {post.author} -{' '}
                 <small>
                   {new Date(post.creationDate).toLocaleString('en-US', {
@@ -88,7 +88,7 @@ export default function MyPostsPage() {
 
               {/* Post Content */}
               <Card.Text className="text-justify">
-                {post.content.length > 200 ? post.content.substring(0, 200) + '...' : post.content}
+                {post.content.length > 500 ? post.content.substring(0, 500) + '...' : post.content}
               </Card.Text>
             </Card.Body>
           </Card>
