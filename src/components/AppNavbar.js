@@ -18,7 +18,7 @@ export default function AppNavbar() {
 
           <Nav.Link as={Link} to="/" className="navbar-collapse">Home</Nav.Link>
 
-          {user.isAdmin === false && (
+          {!user.isAdmin && (
             <Nav.Link href="/posts" className="navbar-collapse">Posts</Nav.Link>
           )}
 
