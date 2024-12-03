@@ -1,10 +1,18 @@
 import { useState, useEffect } from 'react';
 import { Card, Button, Spinner, Container } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { Notyf } from 'notyf';
 
 export default function UserView() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const notyf = new Notyf();
+  const navigate = useNavigate();
+
+  // Check if the user is authenticated by looking for a token in localStorage
+  const isAuthenticated = localStorage.getItem('token') !== null;
+  console.log("isAuthenticated", isAuthenticated);
 
   useEffect(() => {
     // Fetch the posts from the backend API
@@ -37,35 +45,61 @@ export default function UserView() {
     );
   }
 
+  const handleViewDetails = (postId) => {
+    notyf.success(`Viewing details for movie ID: ${postId}`);
+    navigate(`/post/${postId}`);  // Redirect to the posts details page
+  };
+
+  const handleLoginRedirect = () => {
+    // Redirect to the login page if the user is not authenticated
+    navigate('/login');
+  };
+
   return (
     <Container className="my-5">
-      {posts.map((post) => (
-        <Card key={post._id} className="my-4 shadow-lg" style={{ maxWidth: '900px', margin: 'auto' }}>
-          <Card.Body>
-            {/* Title */}
-            <Card.Title className="display-4 font-weight-bold">{post.title}</Card.Title>
+      {posts.length > 0 ? (
+        posts.map((post) => (
+          <Card key={post._id} className="my-4 shadow-lg" style={{ maxWidth: '900px', margin: 'auto' }}>
+            <Card.Body>
+              {/* Title */}
+              <Card.Title className="display-4 font-weight-bold">{post.title}</Card.Title>
 
-            {/* Author and Date */}
-            <Card.Subtitle className="text-muted mb-2">By: {post.author} - <small>{new Date(post.creationDate).toLocaleString('en-US', {
-                month: '2-digit',
-                day: '2-digit',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                hour12: true,
-              })}</small>
-            </Card.Subtitle>
+              {/* Author and Date */}
+              <Card.Subtitle className="text-muted mb-2">
+                By: {post.author} -{' '}
+                <small>
+                  {new Date(post.creationDate).toLocaleString('en-US', {
+                    month: '2-digit',
+                    day: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true,
+                  })}
+                </small>
+              </Card.Subtitle>
 
-            {/* Post Content */}
-            <Card.Text className="text-justify">
-              {post.content.length > 200 ? post.content.substring(0, 200) + '...' : post.content}
-            </Card.Text>
+              {/* Post Content */}
+              <Card.Text className="text-justify">
+                {post.content.length > 200 ? post.content.substring(0, 200) + '...' : post.content}
+              </Card.Text>
 
-            {/* "Read More" Button */}
-            <Button variant="outline-primary" size="sm">Read More</Button>
-          </Card.Body>
-        </Card>
-      ))}
+              {/* "Read More" Button */}
+              {isAuthenticated ? (
+                <button className="view-details-btn" onClick={() => handleViewDetails(post._id)}>
+                  View Details
+                </button>
+              ) : (
+                <button className="view-details-btn" onClick={handleLoginRedirect} style={{ backgroundColor: 'black', color: 'white' }}>
+                  Please log in to view details.
+                </button>
+              )}
+            </Card.Body>
+          </Card>
+        ))
+      ) : (
+        <p>No posts available.</p>
+      )}
     </Container>
   );
 }

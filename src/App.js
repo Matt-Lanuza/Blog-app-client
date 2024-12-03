@@ -7,6 +7,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
 import Posts from './pages/Posts';
+import PostDetails from './pages/PostDetails';
 
 function App() {
     const [user, setUser] = useState(() => {
@@ -76,6 +77,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/posts" element={<Posts />} />
+          <Route path="/post/:id" element={<PostDetails />} />
         </Routes>
       </Router>
     </UserProvider>
