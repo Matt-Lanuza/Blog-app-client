@@ -26,16 +26,10 @@ export default function PostDetailsPage() {
 
       // Fetch comments for the movie
       const fetchComments = () => {
-        const token = localStorage.getItem('token');
-        if (!token) {
-          return;
-        }
-
         fetch(`https://blog-post-server.onrender.com/posts/getComments/${id}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
           }
         })
           .then((response) => response.json())

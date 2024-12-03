@@ -8,9 +8,6 @@ export default function UserView() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const isAuthenticated = localStorage.getItem('token') !== null;
-  console.log('isAuthenticated', isAuthenticated);
-
   useEffect(() => {
     fetch('https://blog-post-server.onrender.com/posts/getAllPosts')
       .then((res) => res.json())
@@ -73,15 +70,9 @@ export default function UserView() {
                 {post.content.length > 200 ? post.content.substring(0, 200) + '...' : post.content}
               </Card.Text>
 
-              {isAuthenticated ? (
-                <button className="view-details-btn" onClick={() => handleViewDetails(post._id)}>
-                  View Details
-                </button>
-              ) : (
-                <button className="view-details-btn-notloggedin" onClick={handleLoginRedirect}>
-                  Please log in to view details.
-                </button>
-              )}
+              <button className="view-details-btn" onClick={() => handleViewDetails(post._id)}>
+                View Details
+              </button>
             </Card.Body>
           </Card>
         ))
