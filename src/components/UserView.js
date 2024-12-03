@@ -86,11 +86,11 @@ export default function UserView() {
 
               {/* "Read More" Button */}
               {isAuthenticated ? (
-                <button className="view-details-btn" onClick={() => handleViewDetails(post._id)}>
+                <button className="view-details-btn" onClick={() => handleViewDetails(post._id)} >
                   View Details
                 </button>
               ) : (
-                <button className="view-details-btn" onClick={handleLoginRedirect} style={{ backgroundColor: 'black', color: 'white' }}>
+                <button className="view-details-btn-notloggedin" onClick={handleLoginRedirect} >
                   Please log in to view details.
                 </button>
               )}

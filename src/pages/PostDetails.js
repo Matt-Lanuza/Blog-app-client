@@ -55,6 +55,13 @@ export default function PostDetailsPage() {
           <Card.Text className="text-justify">{post.content}</Card.Text>
         </Card.Body>
       </Card>
+
+
+      <div className="text-center mt-3">
+        <p>
+           <a href="/posts">Back to Blog Posts</a>
+        </p>
+      </div>
     </Container>
   );
 }

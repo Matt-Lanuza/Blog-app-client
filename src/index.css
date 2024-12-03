@@ -31,3 +31,18 @@
   color: #FFC107;
   font-size: 25px;
 }
+
+/*view details button for Posts*/
+.view-details-btn{
+  width: 100px;
+  background-color: #0056b3;
+  color: white;
+}
+
+
+/*view details button for Posts (users that are not logged in)*/
+.view-details-btn-notloggedin{
+  width: 230px;
+  background-color: #6c757d;
+  color: white;
+}
