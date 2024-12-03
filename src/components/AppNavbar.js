@@ -21,7 +21,7 @@ export default function AppNavbar() {
           {!user.isAdmin && (
             <>
             <Nav.Link href="/posts" className="navbar-collapse">Posts</Nav.Link>
-            <Nav.Link href="/myposts" className="navbar-collapse">{user.username}</Nav.Link>
+            <Nav.Link href="/my-posts" className="navbar-collapse">{user.username}</Nav.Link>
             </>
           )}
 

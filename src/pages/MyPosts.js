@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Card, Spinner, Container } from 'react-bootstrap';
 import { Notyf } from 'notyf';
+import CreatePostModal from '../components/CreatePostModal';
 
 export default function MyPostsPage() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showCreateModal, setShowCreateModal] = useState(false);
   const notyf = new Notyf();
 
   useEffect(() => {
@@ -15,21 +17,18 @@ export default function MyPostsPage() {
   const fetchMyPosts = () => {
     setLoading(true);
 
-    // Get the token from localStorage
     const token = localStorage.getItem('token');
-
     if (!token) {
       setError('You are not authenticated.');
       setLoading(false);
       return;
     }
 
-    // Fetch the user's posts
     fetch('https://blog-post-server.onrender.com/posts/getMyPosts', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((response) => response.json())
@@ -63,15 +62,20 @@ export default function MyPostsPage() {
 
   return (
     <Container className="my-5">
-      <h2 className="my-5 text-center">My Posts</h2>
+      <h2 className="mt-5 mb-3 text-center">My Posts</h2>
+      <div className="functionalities-div text-center">
+        <button
+          className="btn btn-primary create-post-btn"
+          onClick={() => setShowCreateModal(true)}
+        >
+          What's on your mind?
+        </button>
+      </div>
       {posts.length > 0 ? (
         posts.map((post) => (
           <Card key={post._id} className="my-4 shadow-lg" style={{ maxWidth: '900px', margin: 'auto' }}>
             <Card.Body className="my-5">
-              {/* Title */}
               <Card.Title className="display-4 font-weight-bold mb-3 text-center">{post.title}</Card.Title>
-
-              {/* Author and Date */}
               <Card.Subtitle className="text-muted mb-5 text-center">
                 By: {post.author} -{' '}
                 <small>
@@ -85,8 +89,6 @@ export default function MyPostsPage() {
                   })}
                 </small>
               </Card.Subtitle>
-
-              {/* Post Content */}
               <Card.Text className="text-justify">
                 {post.content.length > 500 ? post.content.substring(0, 500) + '...' : post.content}
               </Card.Text>
@@ -97,10 +99,15 @@ export default function MyPostsPage() {
         <p>No posts available.</p>
       )}
 
+      <CreatePostModal
+        show={showCreateModal}
+        onHide={() => setShowCreateModal(false)}
+        refreshPosts={fetchMyPosts}
+      />
 
       <div className="text-center mt-5">
         <p>
-           <a href="/posts">Back to Blog Posts</a>
+          <a href="/posts">Back to Blog Posts</a>
         </p>
       </div>
     </Container>

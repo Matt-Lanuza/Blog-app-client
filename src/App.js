@@ -79,7 +79,7 @@ function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/post/:id" element={<PostDetails />} />
-          <Route path="/myposts" element={<MyPosts />} />
+          <Route path="/my-posts" element={<MyPosts />} />
         </Routes>
       </Router>
     </UserProvider>
