@@ -52,10 +52,10 @@ export default function UserView() {
   }
 
   return (
-    <Container className="my-5">
+    <Container className="my-5 py-3">
       {posts.length > 0 ? (
         posts.map((post) => (
-          <Card key={post._id} className="my-4 shadow-lg" style={{ maxWidth: '900px', margin: 'auto' }}>
+          <Card key={post._id} className="my-5 shadow-lg" style={{ maxWidth: '900px', margin: 'auto' }}>
             <Card.Body>
               <Card.Title className="display-4 font-weight-bold">{post.title}</Card.Title>
               <Card.Subtitle className="text-muted mb-2">
