@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Card, Button, Spinner, Container } from 'react-bootstrap';
+import { Card, Spinner, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { Notyf } from 'notyf';
 
 export default function UserView() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const notyf = new Notyf();
   const navigate = useNavigate();
 
   const isAuthenticated = localStorage.getItem('token') !== null;
