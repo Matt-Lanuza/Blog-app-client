@@ -39,7 +39,7 @@ export default function AdminView() {
 
   return (
     <Container className="my-5 text-center">
-      <h2 className="text-center">Admin Dashboard</h2>
+      <h2 className="text-center mb-5">Admin Dashboard</h2>
       {/* Posts Table */}
       <Table striped bordered hover responsive>
         <thead>
