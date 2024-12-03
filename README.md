@@ -11,7 +11,7 @@
 
 - Non-admin Users
     - email: "dummy@blog.com"
-    - password: "dummy1234" <br />
+    - password: "dummy1234" <br><br>
 
     - email: "fizz@blog.com"
     - password: "fizz1234"
