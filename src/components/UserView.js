@@ -71,7 +71,7 @@ export default function UserView() {
               </Card.Text>
 
               <button className="view-details-btn" onClick={() => handleViewDetails(post._id)}>
-                View Details
+                Continue reading
               </button>
             </Card.Body>
           </Card>

@@ -43,9 +43,9 @@
   font-size: 25px;
 }
 
-/*view details button for Posts*/
+/*continue reading button for Posts*/
 .view-details-btn{
-  width: 100px;
+  width: 150px;
   background-color: #0056b3;
   color: white;
 }
