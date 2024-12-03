@@ -2,13 +2,17 @@ import { useState, useEffect } from 'react';
 import { Card, Button, Spinner, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { Notyf } from 'notyf';
+import CreatePostModal from './CreatePostModal';
 
 export default function UserView() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showCreateModal, setShowCreateModal] = useState(false);
   const notyf = new Notyf();
   const navigate = useNavigate();
+
+
 
   // Check if the user is authenticated by looking for a token in localStorage
   const isAuthenticated = localStorage.getItem('token') !== null;
@@ -28,6 +32,28 @@ export default function UserView() {
         setLoading(false);
       });
   }, []);
+
+  /*get posts without refreshing*/
+  const fetchPosts = () => {
+    setLoading(true);
+    fetch('https://blog-post-server.onrender.com/posts/getAllPosts')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch posts.');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log('Fetched posts after refresh:', data);
+        setPosts(data.posts);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching posts:', error);
+        setLoading(false);
+        notyf.error('Failed to load posts. Please try again later.');
+      });
+  };
 
   if (loading) {
     return (
@@ -55,8 +81,20 @@ export default function UserView() {
     navigate('/login');
   };
 
+  const handleCreatePostClick = () => {
+    setShowCreateModal(true); // Show the modal when button is clicked
+  };
+
   return (
     <Container className="my-5">
+    <div className="functionalities-div text-center">
+      {isAuthenticated && (
+        <Button variant="primary" onClick={handleCreatePostClick} className="create-post-btn mb-4"  >
+          What's on your mind?
+        </Button>
+      )}
+    </div>
+
       {posts.length > 0 ? (
         posts.map((post) => (
           <Card key={post._id} className="my-4 shadow-lg" style={{ maxWidth: '900px', margin: 'auto' }}>
@@ -100,6 +138,14 @@ export default function UserView() {
       ) : (
         <p>No posts available.</p>
       )}
+
+
+      {/* Create Post Modal */}
+      <CreatePostModal 
+        show={showCreateModal} 
+        onHide={() => setShowCreateModal(false)}
+        refreshPosts={fetchPosts}
+      />
     </Container>
   );
 }
