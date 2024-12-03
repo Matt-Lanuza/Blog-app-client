@@ -40,7 +40,7 @@ export default function UserView() {
   return (
     <Container className="my-5">
       {posts.map((post) => (
-        <Card key={post.id} className="my-4 shadow-lg" style={{ maxWidth: '900px', margin: 'auto' }}>
+        <Card key={post._id} className="my-4 shadow-lg" style={{ maxWidth: '900px', margin: 'auto' }}>
           <Card.Body>
             {/* Title */}
             <Card.Title className="display-4 font-weight-bold">{post.title}</Card.Title>
@@ -58,7 +58,7 @@ export default function UserView() {
 
             {/* Post Content */}
             <Card.Text className="text-justify">
-              {post.content}
+              {post.content.length > 200 ? post.content.substring(0, 200) + '...' : post.content}
             </Card.Text>
 
             {/* "Read More" Button */}

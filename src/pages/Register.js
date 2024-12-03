@@ -135,7 +135,7 @@ export default function Register() {
             </Form>
 
             <div className="mt-3 text-center">
-                <p>Already have an account? <Link to="/">Log in here</Link></p>
+                <p>Already have an account? <Link to="/login">Log in here</Link></p>
             </div>
         </Container>
     );

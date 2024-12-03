@@ -16,18 +16,22 @@ export default function AppNavbar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
 
+          <Nav.Link as={Link} to="/" className="navbar-collapse">Home</Nav.Link>
+
+          {user.isAdmin === false && (
+            <Nav.Link href="/posts" className="navbar-collapse">Posts</Nav.Link>
+          )}
+
+          {user && user.isAdmin === true && (
+            <Nav.Link href="/posts" className="navbar-collapse">Dashboard</Nav.Link>
+          )}
+
           {user && user.id !== null ? (
-            <>
-              <Nav.Link as={Link} to="/" className="navbar-collapse">Home</Nav.Link>
-              <Nav.Link as={Link} to="/posts" className="navbar-collapse">Posts</Nav.Link>
-              <Nav.Link as={Link} to="/logout" className="navbar-collapse">Logout</Nav.Link>
-            </>
+            <Nav.Link href="/logout" className="navbar-collapse">Logout</Nav.Link>
           ) : (
             <>
-              <Nav.Link as={Link} to="/" className="navbar-collapse">Home</Nav.Link>
-              <Nav.Link as={Link} to="/posts" className="navbar-collapse">Posts</Nav.Link>
-              <Nav.Link as={Link} to="/login" className="navbar-collapse">Login</Nav.Link>
-              <Nav.Link as={Link} to="/register" className="navbar-collapse">Register</Nav.Link>
+              <Nav.Link href="/login" className="navbar-collapse">Login</Nav.Link>
+              <Nav.Link href="/register" className="navbar-collapse">Register</Nav.Link>
             </>
           )}
 

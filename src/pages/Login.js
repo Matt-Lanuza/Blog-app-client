@@ -64,7 +64,7 @@ export default function Login() {
               setEmail('');
               setPassword('');
 
-              navigate('/');
+              navigate('/posts');
             });
         } else {
           notyf.error('Please double-check your credentials.');
