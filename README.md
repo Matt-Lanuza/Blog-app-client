@@ -78,6 +78,10 @@
 
 - No Request Body
 
+#### [GET] - "/posts/getMyPosts"
+
+- No Request Body
+
 #### [PUT] - "/posts/editPost/:id"
 
 - Sample Request Body
