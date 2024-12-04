@@ -7,7 +7,6 @@ export default function GetComments({ comments }) {
 
   return (
     <div className="get-comments mt-5">
-      <h4 className="comments-title mb-4 text-center">Comments</h4>
       {comments.length === 0 ? (
         <p className="no-comments text-center text-muted">No comments yet. Be the first to comment!</p>
       ) : (
