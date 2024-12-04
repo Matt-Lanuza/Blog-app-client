@@ -127,3 +127,11 @@
   background-color: #DC143C; 
   color: white;
 }
+
+/*Line in Post details page*/
+.styled-line {
+  width: 95%; 
+  margin: 0 auto;
+  border-top: 1px solid gray;
+  margin-bottom: 20px;
+}

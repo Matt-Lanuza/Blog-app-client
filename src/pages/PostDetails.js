@@ -84,14 +84,7 @@ export default function PostDetailsPage() {
           <Card.Text className="text-justify">{post.content}</Card.Text>
         </Card.Body>
 
-        <div
-          style={{
-            width: '95%',
-            margin: '0 auto',
-            borderTop: '1px solid gray',
-            marginBottom: '20px',
-          }}
-        ></div>
+        <div className="styled-line"></div>
 
         <h4 className="comments-title mt-3 text-center">Comments</h4>
         
