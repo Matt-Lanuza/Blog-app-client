@@ -2,10 +2,10 @@ import { Container, Row, Col, Card, ListGroup } from 'react-bootstrap';
 
 export default function MissionVisionGoals() {
   return (
-    <Container className="my-3">
+    <Container className="my-5">
 
       {/* Mission, Vision, and Goals Card */}
-      <Row className="mt-4">
+      <Row className="mt-5">
         <Col md={4} className="d-flex">
           <Card className="shadow-sm mb-4 flex-fill">
             <Card.Body className="d-flex flex-column justify-content-center text-center">

@@ -9,7 +9,7 @@ export default function AppNavbar() {
   const { user } = useContext(UserContext);
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary" id="app-navbar">
+    <Navbar expand="lg" className="bg-body-tertiary sticky-top" id="app-navbar">
       <Container>
         <Navbar.Brand as={Link} to="/" id="logo-name">BuggyThoughts</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

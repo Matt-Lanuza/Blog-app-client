@@ -2,7 +2,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 export default function Footer() {
   return (
-    <footer className="bg-dark text-white py-4 mt-5">
+    <footer className="bg-dark text-white py-2">
       <Container>
         <Row className="text-center">
           <Col>
