@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Table, Spinner, Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import AdminDeletePost from './AdminDeletePost';
+
 
 export default function AdminView() {
   const [posts, setPosts] = useState([]);
@@ -81,7 +83,10 @@ export default function AdminView() {
                 {post.content.length > 150 ? post.content.substring(0, 150) + '...' : post.content}
               </td>
               <td className="d-flex justify-content-center align-items-center" style={{ height: '120px' }}>
-                <button className="btn btn-outline-primary btn-sm mx-2">View</button>
+                <Link to={`/admin/post-detail/${post._id}`} className="btn btn-outline-primary btn-sm mx-2">
+                  View
+                </Link>
+                
                 <button
                   className="btn btn-outline-danger btn-sm mx-2"
                   onClick={() => handleDeleteClick(post._id)}
