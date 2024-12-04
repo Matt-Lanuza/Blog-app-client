@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, Spinner, Container } from 'react-bootstrap';
 import GetComments from '../components/GetComments';
@@ -11,7 +11,8 @@ export default function PostDetailsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchComments = () => {
+  // Use useCallback to memoize fetchComments function
+  const fetchComments = useCallback(() => {
     fetch(`https://blog-post-server.onrender.com/posts/getComments/${id}`, {
       method: 'GET',
       headers: {
@@ -27,7 +28,7 @@ export default function PostDetailsPage() {
       .catch((error) => {
         console.error('Error fetching comments:', error);
       });
-  };
+  }, [id]); // Depend on postId (id from URL)
 
   useEffect(() => {
     // Fetch the post by ID
@@ -44,7 +45,7 @@ export default function PostDetailsPage() {
 
     // Fetch comments
     fetchComments();
-  }, [id]);
+  }, [id, fetchComments]); // Depend on id and fetchComments to avoid warnings
 
   if (loading) {
     return (

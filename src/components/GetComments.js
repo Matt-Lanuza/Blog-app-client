@@ -1,5 +1,3 @@
-import { Card } from 'react-bootstrap';
-
 export default function GetComments({ comments }) {
   if (!comments) {
     return null;

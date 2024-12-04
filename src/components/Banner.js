@@ -12,7 +12,7 @@ export default function Banner() {
 
   const handleClick = () => {
     if (user.isAdmin) {
-      notyf.success(`Welcome, ${user.username}! Navigating to the movies page.`);
+      notyf.success(`Welcome, ${user.username}! Navigating to dashboard.`);
       navigate('/posts');
     } else {
       navigate('/posts');

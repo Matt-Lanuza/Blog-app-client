@@ -6,6 +6,8 @@ import EditPostModal from '../components/EditPostModal';
 import DeletePost from '../components/DeletePost';
 import GetComments from '../components/GetComments';
 
+const notyf = new Notyf();
+
 export default function MyPostsPage() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,7 +19,7 @@ export default function MyPostsPage() {
   const [postToDelete, setPostToDelete] = useState(null);
   const [expandedComments, setExpandedComments] = useState({});
 
-  const notyf = new Notyf();
+
 
   useEffect(() => {
     fetchMyPosts();

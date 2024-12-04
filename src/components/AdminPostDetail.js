@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Button, ListGroup, Spinner } from 'react-bootstrap';
 
@@ -11,13 +11,8 @@ export default function AdminPostDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    fetchPostDetails();
-    fetchPostComments();
-  }, [postId]);
-
-  // Fetch post details
-  const fetchPostDetails = () => {
+  // Use useCallback to memoize the function to avoid unnecessary re-renders
+  const fetchPostDetails = useCallback(() => {
     setLoading(true);
     fetch(`https://blog-post-server.onrender.com/posts/getPost/${postId}`)
       .then((res) => res.json())
@@ -29,10 +24,9 @@ export default function AdminPostDetail() {
         setError('Failed to load post details. Please try again later.');
         setLoading(false);
       });
-  };
+  }, [postId]); // Dependency on postId
 
-  // Fetch comments for the post
-  const fetchPostComments = () => {
+  const fetchPostComments = useCallback(() => {
     fetch(`https://blog-post-server.onrender.com/posts/getComments/${postId}`)
       .then((res) => res.json())
       .then((data) => {
@@ -41,7 +35,12 @@ export default function AdminPostDetail() {
       .catch((err) => {
         setError('Failed to load comments. Please try again later.');
       });
-  };
+  }, [postId]); // Dependency on postId
+
+  useEffect(() => {
+    fetchPostDetails();
+    fetchPostComments();
+  }, [postId, fetchPostDetails, fetchPostComments]); // Dependency on postId, fetchPostDetails, and fetchPostComments
 
   const handleDeleteComment = (commentId) => {
     const token = localStorage.getItem('token');
@@ -58,13 +57,12 @@ export default function AdminPostDetail() {
       },
     })
       .then(() => {
-        fetchPostComments();
+        fetchPostComments(); // Refresh comments after deletion
       })
       .catch((err) => {
         setError('Failed to delete comment. Please try again later.');
       });
   };
-
 
   if (loading) {
     return (
