@@ -61,28 +61,28 @@ export default function CreatePostModal({ show, onHide, refreshPosts }) {
   return (
     <Modal show={show} onHide={onHide} centered>
       <Modal.Header closeButton>
-        <Modal.Title>Create new post</Modal.Title>
+        <Modal.Title>Share a thought</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
           {error && <div className="alert alert-danger">{error}</div>}
 
           <Form.Group className="mb-3" controlId="formTitle">
-            <Form.Label>Title:</Form.Label>
+            <Form.Label>About:</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter post title"
+              placeholder="Tell us what it's all about!"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formContent">
-            <Form.Label>Content:</Form.Label>
+            <Form.Label>Description:</Form.Label>
             <Form.Control
               as="textarea"
               rows={5}
-              placeholder="Enter post content"
+              placeholder="Give us a little more detail on your thoughts..."
               value={content}
               onChange={(e) => setContent(e.target.value)}
             />
@@ -94,7 +94,7 @@ export default function CreatePostModal({ show, onHide, refreshPosts }) {
           Close
         </Button>
         <Button variant="primary" onClick={handleSubmit} disabled={loading}>
-          {loading ? <Spinner animation="border" size="sm" /> : 'Create'}
+          {loading ? <Spinner animation="border" size="sm" /> : 'Post'}
         </Button>
       </Modal.Footer>
     </Modal>
