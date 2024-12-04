@@ -83,7 +83,17 @@ export default function PostDetailsPage() {
           {/* Post Content */}
           <Card.Text className="text-justify">{post.content}</Card.Text>
         </Card.Body>
-        <h4 className="comments-title mb-4 text-center">Comments</h4>
+
+        <div
+          style={{
+            width: '95%',
+            margin: '0 auto',
+            borderTop: '1px solid gray',
+            marginBottom: '20px',
+          }}
+        ></div>
+
+        <h4 className="comments-title mt-3 text-center">Comments</h4>
         
         <GetComments comments={comments} />
         <AddComment postId={id} refreshComments={fetchComments} />
