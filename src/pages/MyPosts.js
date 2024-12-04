@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Card, Spinner, Container, Button } from 'react-bootstrap';
+import { Card, Spinner, Container, Button, Collapse } from 'react-bootstrap';
 import { Notyf } from 'notyf';
 import CreatePostModal from '../components/CreatePostModal';
 import EditPostModal from '../components/EditPostModal';
 import DeletePost from '../components/DeletePost';
+import GetComments from '../components/GetComments';
 
 export default function MyPostsPage() {
   const [posts, setPosts] = useState([]);
@@ -14,6 +15,7 @@ export default function MyPostsPage() {
   const [selectedPost, setSelectedPost] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [postToDelete, setPostToDelete] = useState(null);
+  const [expandedComments, setExpandedComments] = useState({});
 
   const notyf = new Notyf();
 
@@ -53,6 +55,13 @@ export default function MyPostsPage() {
       .finally(() => {
         setLoading(false);
       });
+  };
+
+  const toggleComments = (postId) => {
+    setExpandedComments((prevState) => ({
+      ...prevState,
+      [postId]: !prevState[postId],
+    }));
   };
 
   if (loading) {
@@ -131,6 +140,23 @@ export default function MyPostsPage() {
                 {post.content.length > 500 ? post.content.substring(0, 500) + '...' : post.content}
               </Card.Text>
 
+
+              {/* Toggle Comments */}
+              <div className="text-center mt-3">
+                <Button
+                  variant="link"
+                  onClick={() => toggleComments(post._id)}
+                >
+                  {expandedComments[post._id] ? 'Hide Comments' : 'View Comments'}
+                </Button>
+              </div>
+
+              <Collapse in={expandedComments[post._id]}>
+                <div>
+                  <hr />
+                  <GetComments comments={post.comments} /> {/* Use GetComments component */}
+                </div>
+              </Collapse>
 
             </Card.Body>
           </Card>
