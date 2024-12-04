@@ -2,10 +2,17 @@ import { Container, Row, Col, Card, ListGroup } from 'react-bootstrap';
 
 export default function MissionVisionGoals() {
   return (
-    <Container className="my-5">
+    <Container className="my-3">
+    {/* Add top margin to create space */}
+    <Row className="text-center mt-5">
+      <Col>
+        <h2 className="display-7 text-primary">Our Mission, Vision, and Goals</h2>
+        <p className="lead text-muted">Empowering developers, fostering community, and continuous growth.</p>
+      </Col>
+    </Row>
 
       {/* Mission, Vision, and Goals Card */}
-      <Row className="mt-5">
+      <Row className="mt-2">
         <Col md={4} className="d-flex">
           <Card className="shadow-sm mb-4 flex-fill">
             <Card.Body className="d-flex flex-column justify-content-center text-center">
