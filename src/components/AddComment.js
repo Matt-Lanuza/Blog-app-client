@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import { Notyf } from 'notyf';
 
 export default function AddComment({ postId, refreshComments }) {
@@ -7,6 +8,7 @@ export default function AddComment({ postId, refreshComments }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const notyf = new Notyf();
+  const navigate = useNavigate();
 
   const handleAddComment = (e) => {
     e.preventDefault();
@@ -16,8 +18,9 @@ export default function AddComment({ postId, refreshComments }) {
     const token = localStorage.getItem('token');
 
     if (!token) {
-      notyf.error('You need to be logged in to add a comment.');
+      notyf.error('Please log in to leave a comment.');
       setLoading(false);
+      navigate('/login');
       return;
     }
 
