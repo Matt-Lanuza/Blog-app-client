@@ -1,53 +1,87 @@
-import { Container, Row, Col, Card, ListGroup } from 'react-bootstrap';
+import { Container, Carousel } from 'react-bootstrap';
 
-export default function MissionVisionGoals() {
+export default function MissionVisionGoalsCarousel() {
   return (
-    <Container className="my-3">
-    {/* Add top margin to create space */}
-    <Row className="text-center mt-5">
-      <Col>
+    <Container className="my-5">
+      {/* Title Section */}
+      <div className="text-center mb-4">
         <h2 className="display-7 text-primary">Our Mission, Vision, and Goals</h2>
-        <p className="lead text-muted">Empowering developers, fostering community, and continuous growth.</p>
-      </Col>
-    </Row>
+        <p className="lead text-muted">
+          Empowering developers, fostering community, and continuous growth.
+        </p>
+      </div>
 
-      {/* Mission, Vision, and Goals Card */}
-      <Row className="mt-2">
-        <Col md={4} className="d-flex">
-          <Card className="shadow-sm mb-4 flex-fill">
-            <Card.Body className="d-flex flex-column justify-content-center text-center">
-              <Card.Title className="text-primary">Our Mission</Card.Title>
-              <Card.Text>
-                We empower developers by providing a platform to share knowledge, solve problems, and grow together. BuggyThoughts is a space where developers thrive by learning, sharing, and connecting.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
+      {/* Carousel Section */}
+      <Carousel>
+        {/* Mission Slide */}
+        <Carousel.Item>
+          <div
+            className="d-flex justify-content-center align-items-center"
+            style={{
+              backgroundColor: '#f4f8fa',
+              borderRadius: '12px',
+              padding: '40px',
+              minHeight: '250px',
+              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+            }}
+          >
+            <div className="text-center">
+              <h3 className="text-primary mb-3">Our Mission</h3>
+              <p className="text-secondary" style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
+                We empower developers by providing a platform to share knowledge, solve problems,
+                and grow together. BuggyThoughts is a space where developers thrive by learning,
+                sharing, and connecting.
+              </p>
+            </div>
+          </div>
+        </Carousel.Item>
 
-        <Col md={4} className="d-flex">
-          <Card className="shadow-sm mb-4 flex-fill">
-            <Card.Body className="d-flex flex-column justify-content-center text-center">
-              <Card.Title className="text-success">Our Vision</Card.Title>
-              <Card.Text>
-                To be the go-to blog for developers, fostering a community that supports continuous learning and innovation. Our vision is to shape the future of programming, one post at a time.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
+        {/* Vision Slide */}
+        <Carousel.Item>
+          <div
+            className="d-flex justify-content-center align-items-center"
+            style={{
+              backgroundColor: '#f4f8fa',
+              borderRadius: '12px',
+              padding: '40px',
+              minHeight: '250px',
+              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+            }}
+          >
+            <div className="text-center">
+              <h3 className="text-success mb-3">Our Vision</h3>
+              <p className="text-secondary" style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
+                To be the go-to blog for developers, fostering a community that supports continuous
+                learning and innovation. Our vision is to shape the future of programming, one post
+                at a time.
+              </p>
+            </div>
+          </div>
+        </Carousel.Item>
 
-        <Col md={4} className="d-flex">
-          <Card className="shadow-sm mb-4 flex-fill">
-            <Card.Body className="d-flex flex-column justify-content-center text-center">
-              <Card.Title className="text-warning">Our Goals</Card.Title>
-              <ListGroup variant="flush">
-                <ListGroup.Item>Publish insightful, beginner-friendly content that everyone can understand.</ListGroup.Item>
-                <ListGroup.Item>Foster an active community of developers through discussions and collaborations.</ListGroup.Item>
-                <ListGroup.Item>Continuously enhance the platform for a seamless experience, integrating new tools and features.</ListGroup.Item>
-              </ListGroup>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+        {/* Goals Slide */}
+        <Carousel.Item>
+          <div
+            className="d-flex justify-content-center align-items-center"
+            style={{
+              backgroundColor: '#f4f8fa',
+              borderRadius: '12px',
+              padding: '40px',
+              minHeight: '250px',
+              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+            }}
+          >
+            <div className="text-center">
+              <h3 className="text-warning mb-3">Our Goals</h3>
+              <ul className="list-unstyled text-secondary" style={{ fontSize: '1rem' }}>
+                <li>📌 Publish insightful, beginner-friendly content that everyone can understand.</li>
+                <li>📌 Foster an active community of developers through discussions and collaborations.</li>
+                <li>📌 Continuously enhance the platform for a seamless experience, integrating new tools and features.</li>
+              </ul>
+            </div>
+          </div>
+        </Carousel.Item>
+      </Carousel>
     </Container>
   );
 }

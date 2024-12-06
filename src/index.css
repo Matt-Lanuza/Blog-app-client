@@ -10,6 +10,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 
+/* Global Body Styling */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #333; /* A dark gray text for contrast against the cream background */
+  background-color: #f5f5dc; /* Cream white background color */
+}
+
+/* Container for App Content */
+.app-container {
+  min-height: 100vh; /* Ensure it takes at least the full height of the viewport */
+  padding: 20px; /* Add some padding for space around the content */
+}
+
 
 /*app navbar background*/
 #app-navbar {
